@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using BitNeat;
-using BitNeat.DataClasses;
 
 namespace SampleApplication
 {
@@ -8,6 +7,7 @@ namespace SampleApplication
     {
         static void Main(string[] args)
         {
+            //Create new Manager
             var manager = new Manager
             {
                 EvaluationFuntion = Evaluate,
@@ -15,7 +15,10 @@ namespace SampleApplication
                 Mutator = new Mutator(),
             };
 
+            //Setup ManagerOnOnLifecycleFinishedEvent 
             manager.OnLifecycleFinishedEvent += ManagerOnOnLifecycleFinishedEvent;
+
+            //Train network
             var network = manager.TrainUntil(0.98);
 
             Console.WriteLine("\nTraining Finished !\nTest:\n");
@@ -24,6 +27,8 @@ namespace SampleApplication
             {
                 Console.Write("Input: ");
                 var input = Convert.ToDouble(Console.ReadLine());
+
+                //Calculate and print out the result
                 Console.WriteLine("Output: " + String.Join(", ", network.Calculate(new[] { input })) + "\n");
             }
         }
@@ -38,8 +43,10 @@ namespace SampleApplication
             var avg = 0.0;
 
             for (var i = 0d; i < 1; i += 0.01)
+                //Calculate the networks output -> Get the difference to the value it shoud be -> Add the abs value of the difference to avg 
                 avg += Math.Abs(Math.Cos(i) - network.Calculate(new [] { i })[0]);
  
+            //Convert avg to fitness
             return 1 - avg / 100;
         }
     }
