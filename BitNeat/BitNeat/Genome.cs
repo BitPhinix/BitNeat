@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BitNeat.DataClasses;
 
-namespace BitNeat.DataClasses
+namespace BitNeat
 {
     public class Genome
     {
@@ -12,6 +13,10 @@ namespace BitNeat.DataClasses
         public List<NodeInformation> NodeGenes { get; set; } = new List<NodeInformation>();
         public List<ConnectionInformation> ConnectionGenes { get; set; } = new List<ConnectionInformation>();
 
+        /// <summary>
+        /// Returns a deep copy of the genome
+        /// </summary>
+        /// <returns>The deep copy</returns>
         public Genome Clone()
         {
             return new Genome
@@ -22,6 +27,14 @@ namespace BitNeat.DataClasses
             };
         }
 
+        /// <summary>
+        /// Returns the similaritie to the given genome
+        /// </summary>
+        /// <param name="genome">The genome to compare to</param>
+        /// <param name="excessGenesComparisonImpact">The impact excess genes have</param>
+        /// <param name="disjointGenesComparisonImpact">The impact disjoined genes have</param>
+        /// <param name="weightDifferenceComparisonImpact">The impact weight differences have</param>
+        /// <returns></returns>
         public double GetSimilaritie(Genome genome, double excessGenesComparisonImpact, double disjointGenesComparisonImpact, double weightDifferenceComparisonImpact)
         {
             //Get Exess, Disjoint, Matching genes
@@ -44,7 +57,7 @@ namespace BitNeat.DataClasses
             return excess + disjoint + weightDifference;
         }
 
-        public GenomeComparisonResult GetCompatibility(Genome genome)
+        private GenomeComparisonResult GetCompatibility(Genome genome)
         {
             var result = new GenomeComparisonResult();
             var g2Index = 0;
@@ -97,6 +110,11 @@ namespace BitNeat.DataClasses
             return result;
         }
 
+        /// <summary>
+        /// Creates a crossover child with the given genome
+        /// </summary>
+        /// <param name="genome">The partner to have the child with</param>
+        /// <returns>The child</returns>
         public Genome Crossover(Genome genome)
         {
             var child = new Genome();
@@ -123,19 +141,26 @@ namespace BitNeat.DataClasses
             return child;
         }
 
+        /// <summary>
+        /// Generates a genome with the given parameters
+        /// </summary>
+        /// <param name="inputNeurons">The ammout of input neurons</param>
+        /// <param name="outputNeurons">The ammont of output neurons</param>
+        /// <param name="connect">If all input / output neurons should be connected</param>
+        /// <returns>The generated genome</returns>
         public static Genome Generate(int inputNeurons, int outputNeurons, bool connect)
         {
-            var genome = new Genome
-            {
-                Fitness = 0
-            };
+            //Create new genome
+            var genome = new Genome();
 
+            //Add bias node
             genome.NodeGenes.Add(new NodeInformation
             {
                 Id = -1,
                 Type = NodeType.Bias
             });
 
+            //Add input neurons
             for (var i = 0; i < inputNeurons; i++)
             {
                 genome.NodeGenes.Add(new NodeInformation
@@ -145,6 +170,7 @@ namespace BitNeat.DataClasses
                 });
             }
 
+            //Add output neurons
             for (var i = 0; i < outputNeurons; i++)
             {
                 genome.NodeGenes.Add(new NodeInformation
@@ -156,6 +182,7 @@ namespace BitNeat.DataClasses
                 if(!connect)
                     continue;
 
+                //Connect new output neuron to all input neurons
                 for (var j = 0; j < inputNeurons; j++)
                 {
                     genome.ConnectionGenes.Add(new ConnectionInformation

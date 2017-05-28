@@ -12,9 +12,6 @@ namespace BitNeat
 
         public Neuron[] Neurons { get; set; }
 
-        /// <summary>
-        /// Json.net needs it :/
-        /// </summary>
         public Network()
         {
             

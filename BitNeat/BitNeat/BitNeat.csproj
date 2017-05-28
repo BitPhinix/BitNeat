@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="DataClasses\ConnectionInformation.cs" />
     <Compile Include="Population.cs" />
-    <Compile Include="DataClasses\Genome.cs" />
+    <Compile Include="Genome.cs" />
     <Compile Include="DataClasses\GenomeComparisonInfo.cs" />
     <Compile Include="DataClasses\GenomeComparisonResult.cs" />
     <Compile Include="DataClasses\Inovation.cs" />
