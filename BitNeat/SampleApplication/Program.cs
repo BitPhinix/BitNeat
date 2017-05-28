@@ -16,7 +16,7 @@ namespace SampleApplication
             };
 
             //Setup ManagerOnOnLifecycleFinishedEvent 
-            manager.LifecycleFinishedEvent += ManagerOnOnLifecycleFinishedEvent;
+            manager.LifecycleFinishedEvent += OnLifecycleFinishedEvent;
 
             //Train network
             var network = manager.TrainUntil(0.98);
@@ -33,7 +33,7 @@ namespace SampleApplication
             }
         }
 
-        private static void ManagerOnOnLifecycleFinishedEvent(Population currentPopulation)
+        private static void OnLifecycleFinishedEvent(Population currentPopulation)
         {
             Console.WriteLine($"Highest fitness: {currentPopulation.MaxFitness}");
         }
