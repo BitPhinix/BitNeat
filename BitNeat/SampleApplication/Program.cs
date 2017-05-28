@@ -10,13 +10,13 @@ namespace SampleApplication
             //Create new Manager
             var manager = new Manager
             {
-                EvaluationFuntion = Evaluate,
+                EvaluationFunction = Evaluate,
                 BaseGenome = Genome.Generate(1, 1, true),
                 Mutator = new Mutator(),
             };
 
             //Setup ManagerOnOnLifecycleFinishedEvent 
-            manager.OnLifecycleFinishedEvent += ManagerOnOnLifecycleFinishedEvent;
+            manager.LifecycleFinishedEvent += ManagerOnOnLifecycleFinishedEvent;
 
             //Train network
             var network = manager.TrainUntil(0.98);

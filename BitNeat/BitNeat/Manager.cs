@@ -9,7 +9,7 @@ namespace BitNeat
     {
         public Mutator Mutator { get; set; }
         public Genome BaseGenome { get; set; }
-        public Func<Network, double> EvaluationFuntion { get; set; }
+        public Func<Network, double> EvaluationFunction { get; set; }
         public Population CurrentPopulation { get; } = new Population();
 
         public double ExcessGenesComparisonImpact { get; set; } = 1;
@@ -25,7 +25,7 @@ namespace BitNeat
         private static readonly Random Rnd = new Random();
 
         public delegate void LifecycleFinishedEventDelagate(Population currentPopulation);
-        public event LifecycleFinishedEventDelagate OnLifecycleFinishedEvent;
+        public event LifecycleFinishedEventDelagate LifecycleFinishedEvent;
 
         /// <summary>
         /// Populates the population
@@ -49,7 +49,7 @@ namespace BitNeat
         /// <param name="fitness">The fitness to be reached</param>
         public Network TrainUntil(double fitness)
         {
-            if (EvaluationFuntion == null)
+            if (EvaluationFunction == null)
                 throw new Exception("EvaluationFuntion has to be set first!");
 
             if (Mutator == null)
@@ -70,21 +70,21 @@ namespace BitNeat
             if (CurrentPopulation.Species.Count == 0)
                 Populate();
 
-            if(EvaluationFuntion == null)
+            if(EvaluationFunction == null)
                 throw new Exception("EvaluationFuntion has to be set first!");
 
             if (Mutator == null)
                 throw new Exception("Mutator has to be set first!");
 
             //Evaluate Members
-            CurrentPopulation.EvaluateMembers(EvaluationFuntion);
+            CurrentPopulation.EvaluateMembers(EvaluationFunction);
 
             //Perform lifecycle
             DoSelection();
             Reproduce();
 
             //Fire event
-            OnLifecycleFinishedEvent?.Invoke(CurrentPopulation);
+            LifecycleFinishedEvent?.Invoke(CurrentPopulation);
         }
 
         /// <summary>
