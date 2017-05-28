@@ -139,7 +139,7 @@ namespace BitNeat
 
             //Fill up population
             while (CurrentPopulation.Species.Count + children.Count < PopulationSize)
-                children.Add(GetChild(CurrentPopulation.Species[CurrentPopulation.Species.Count]));
+                children.Add(GetChild(CurrentPopulation.Species[Rnd.Next(CurrentPopulation.Species.Count)]));
 
             //Only keep the best genomes out of each species
             foreach (var species in CurrentPopulation.Species)
