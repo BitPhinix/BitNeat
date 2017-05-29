@@ -74,7 +74,7 @@ namespace BitNeat
                     //Check if connection exists
                     if (!genome.ConnectionGenes.Any(cg => cg.FromNode.Equals(fromNode.Id) && cg.ToNode.Equals(toNode.Id)) && 
                         //Check if connection is allowed
-                        (fromNode.Type != toNode.Type || fromNode.Type == NodeType.Hidden || toNode.Type == NodeType.Hidden))
+                        (fromNode.Type != toNode.Type || fromNode.Type == NodeType.Hidden && toNode.Type != NodeType.Bias || toNode.Type == NodeType.Hidden))
                     {
                         //Create connection
                         genome.ConnectionGenes.Add(new ConnectionInformation
