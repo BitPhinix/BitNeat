@@ -5,9 +5,9 @@ A lightweight and beginner friendly implementation of the neat algorithm
 
 ```C#
 //Create a manager with all necessary properties
-//The Evaluate function has to a function that returns the fitness of the current network
-//The BaseGenome, Mutator can be created outside the obj initializer and be customized
-//to your needs.
+//The Evaluate function has to a function that returns the fitness of 
+//the current network. The BaseGenome, Mutator can be created outside 
+//the obj initializer and be customized to your needs.
 var manager = new Manager
 {
   EvaluationFunction = Evaluate,
