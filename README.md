@@ -38,7 +38,7 @@ while (true)
 
 Or take a look at the sample project [here](https://github.com/BitPhinix/BitNeat/blob/master/BitNeat/SampleApplication/Program.cs).
 
-#How it works
+# How it works
 
 The network is evolved by a slightly modified version of the [NEAT algorithm] (https://de.wikipedia.org/wiki/NeuroEvolution_of_Augmented_Topologies).
 
