@@ -42,7 +42,7 @@ Or take a look at the sample project [here](https://github.com/BitPhinix/BitNeat
 
 The network is evolved by a slightly modified version of the [NEAT algorithm](https://de.wikipedia.org/wiki/NeuroEvolution_of_Augmented_Topologies).
 
-If you want to learn more about it you can read the offical [PDF](http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf) or watch this youtube video:
+If you want to learn more about it you can read the official [PDF](http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf) or watch this youtube video:
 
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=H4WnRLEG73Q
