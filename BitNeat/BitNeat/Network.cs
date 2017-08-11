@@ -12,10 +12,8 @@ namespace BitNeat
 
         public Neuron[] Neurons { get; set; }
 
-        public Network()
-        {
-            
-        }
+        //For serialisation
+        public Network() { }
 
         /// <summary>
         /// Serializes the network to a json string
